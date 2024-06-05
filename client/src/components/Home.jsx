@@ -7,9 +7,10 @@ const Home = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-   
+    const url = import.meta.env.BASE_URL
     const fetchPosts = async () => {
         try {
+            console.log(url)
             const response = await api.get("/posts");
             setData(response.data.posts);
             setLoading(false);
