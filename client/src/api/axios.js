@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const BASE_URL = "http://localhost:3000/"
+const BASE_URL = import.meta.env.BASE_URL
 //base url is the port available on express
 
 export default axios.create({
