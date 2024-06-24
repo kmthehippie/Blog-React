@@ -4,7 +4,7 @@ import useAuth from "../hooks/useAuth";
 import { Outlet } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const PersistLogin = () => {
+const PersistLogin = ({children}) => {
     const [isLoading, setIsLoading] = useState(true);
     const refresh = useRefreshToken();
     const { auth, persist } = useAuth();
@@ -39,12 +39,7 @@ const PersistLogin = () => {
     }, []);
   
     
-    return (
-        <>
-            {isLoading 
-                ? <p>Loading...</p> 
-                : <Outlet />}
-        </>
+    return (<> {children}</>
     );
 };
 

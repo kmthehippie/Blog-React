@@ -3,6 +3,7 @@ import api from "../api/axios";
 import { useState, useEffect } from "react";
 import PostCard from "./reusable/Post-Card";
 
+
 const Home = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
