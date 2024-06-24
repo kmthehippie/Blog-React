@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import useAuth from "../hooks/useAuth";
 import parse from "html-react-parser"
 
+
 const Post = () => {
   const { auth, isModalActive, openModal, closeModal } = useAuth();
   const { postId } = useParams();
@@ -23,6 +24,8 @@ const Post = () => {
       console.error(error);
     }
   };
+
+  const decodeData = (comment) => parse(comment)
 
   useEffect(() => {
     fetchPost();
@@ -76,7 +79,7 @@ const Post = () => {
               &nbsp;
               <span className="comment-date">{comment.date ? format(new Date(comment.date), "dd MMMM yyyy") : ""}</span>
             </div>
-            <div className="content">{comment.comment}</div>
+            <div className="content">{decodeData(comment.comment)}</div>
           </div>
         ))}
       </div>

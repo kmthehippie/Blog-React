@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../../../styles/admin/adminUsers.scss";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import Unauthorized from './Unauthorized';
 
 const Users = () => {
   const axiosPrivate = useAxiosPrivate();
@@ -10,6 +11,7 @@ const Users = () => {
   const [isModalActive, setIsModalActive] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [userTypes, setUserTypes] = useState({ Admin: false, Editor: false, User: false });
+  const [error, setError] = useState(false)
 
   const fetchUsers = async () => {
     setIsLoading(true);
@@ -71,6 +73,7 @@ const Users = () => {
       // Update users state with new user types
       setUsers(prevUsers => prevUsers.map(user => user._id === selectedUser._id ? { ...user, userTypes: updatedUserTypes } : user));
     } catch (err) {
+      setError(true)
       console.error(err);
     }
   };
@@ -141,8 +144,14 @@ const Users = () => {
             </ul>
           </div>
           </div>
-         
         )}
+        {error && (
+          <div className="background-for-modal">
+            <div className="right-modal">
+              <Unauthorized />
+            </div>
+          </div>
+         )}
       </div>
     </>
   );

@@ -11,6 +11,7 @@ const BlogPosts = () => {
     const [isModalActive, setIsModalActive] = useState(false);
     const [postToDelete, setPostToDelete] = useState(null);
     const [totalPages, setTotalPages] = useState(1);
+    const [unauth, setUnauth] = useState(false);
 
     const fetchPosts = async (page) => {
         setIsLoading(true);
@@ -42,7 +43,6 @@ const BlogPosts = () => {
         if (window.innerHeight + document.documentElement.scrollTop > document.documentElement.offsetHeight) {
             // Limit page number to total available pages
             setPage(prevPage => { 
-                console.log("prev page" + prevPage);
                 return Math.min(prevPage + 1, totalPages); 
             });
         }
@@ -59,6 +59,7 @@ const BlogPosts = () => {
             const response = await axiosPrivate.patch(`/admin/dashboard/${postId}/status`, { status: newStatus });
             setPosts(posts.map(post => post._id === postId ? { ...post, status: response.data.post.status } : post));
         } catch (err) {
+            setUnauth(true)
             console.error('Error updating post status:', err);
         }
     };
@@ -76,6 +77,7 @@ const BlogPosts = () => {
             setIsModalActive(false);
             setPostToDelete(null);
         } catch (err) {
+            setUnauth(true)
             console.error('Error deleting post:', err);
         }
     };
@@ -110,6 +112,22 @@ const BlogPosts = () => {
                     {isLoading && <p>Loading More Posts...</p>}
                 </div>
             </div>
+            {unauth && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <button className="close-modal-btn" onClick={() => setUnauth(false)}>
+                            <span className="material-symbols-outlined">cancel</span>
+                        </button>
+                        
+                        <h4 style={{textAlign: "center"}}>You are unauthorized to do perform this action.</h4>
+                        
+                        <div className="button-row">
+                           
+                            <button onClick={() => setUnauth(false)}>Close</button>
+                        </div>                   
+                    </div>
+                </div>
+            )}
             {isModalActive && (
                 <div className="modal"> 
                     <div className="modal-content">

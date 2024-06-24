@@ -21,7 +21,6 @@ const NewPost = () => {
     e.preventDefault();
 
     try {
-      console.log(title, snippet, content, status, imgurl)
       const response = await axiosPrivate.post('/admin/post/new', {
         title,
         snippet,
@@ -29,7 +28,6 @@ const NewPost = () => {
         status,
         imgurl,
       });
-      console.log('Post created:', response.data);
       setTimeout(navigate("/admin/dashboard"), 20000)
      
     } catch (error) {
@@ -85,7 +83,7 @@ const NewPost = () => {
         />
         </div>
        
-        <button type="submit">Update Post</button>
+        <button type="submit">Create New Post</button>
       </form>
     </>
   );

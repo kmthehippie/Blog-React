@@ -1,7 +1,6 @@
-import "../../styles/login.scss"
 import { useNavigate, useLocation } from 'react-router-dom'
-import { useLogout } from "../hooks/useLogout"
-import "../../styles/logout.scss"
+import { useLogout } from "../../hooks/useLogout"
+import "../../../styles/logout.scss"
 
 const Logout = () => {
     const logout = useLogout()
@@ -9,9 +8,11 @@ const Logout = () => {
     const location = useLocation()
     const from = location.state?.from?.pathname || "/"
 
+
     const handleYes = async () => {
         await logout()
-        navigate("/home")
+        navigate("/admin")
+       
     };
     
     const handleNo = () =>{

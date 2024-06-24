@@ -78,7 +78,6 @@ const handleBlur =(ref)=>{
       setErrors(newErrors);
     } else {
       try {
-        console.log('Form submitted:', formData);
         const response = await axiosPrivate.post(
           "/register", 
           JSON.stringify({ 
@@ -90,8 +89,6 @@ const handleBlur =(ref)=>{
             headers: {"Content-Type": "application/json"},
             credentials: "include"
         });
-        console.log(response.data)
-        console.log(JSON.stringify(response))
         setFormData({
           username: '',
           email: '',
@@ -102,7 +99,6 @@ const handleBlur =(ref)=>{
         navigate("/login")
       } catch (error) {
         setErrors(error);
-        console.log(error);
         errRef.current.focus()
       }
   

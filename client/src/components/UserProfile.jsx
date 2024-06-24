@@ -21,7 +21,6 @@ const UserProfile = () => {
         const response = await axiosPrivate.get(`/user/${userId}`, {
           signal: controller.signal
         }) 
-        console.log(response)
         isMounted && setUser(response.data)
       } catch (err) {
         console.error(err)

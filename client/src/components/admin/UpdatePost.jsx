@@ -43,7 +43,6 @@ const UpdatePost = () => {
         status,
         imgurl,
       });
-      console.log('Post created:', response.data);
       navigate('/admin/dashboard');
     } catch (error) {
       console.error('Error creating post:', error);

@@ -50,7 +50,6 @@ const Login = () => {
             const accessToken = response?.data?.accessToken;
             const userTypes = response?.data?.userTypes;
             const userId = response?.data?.userId;
-            console.log(response)
             setAuth({username, userId, userTypes, accessToken})
             setUsername("")
             setPassword("")

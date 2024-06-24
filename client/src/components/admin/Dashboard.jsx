@@ -6,7 +6,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <div className="top-modal">
         <ul>
-          <li><NavLink end to="/admin/dashboard" >Blogposts</NavLink></li>
+          <li><NavLink end to="/admin/dashboard" activeClassName="active">Blogposts</NavLink></li>
           <li><NavLink to="/admin/dashboard/users" activeClassName="active">Users</NavLink></li>
           <li><NavLink to="/admin/dashboard/newpost" activeClassName="active">New Post</NavLink></li>
         </ul>

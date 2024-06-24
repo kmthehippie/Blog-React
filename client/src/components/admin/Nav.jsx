@@ -1,11 +1,11 @@
 import "../../../styles/admin/adminNav.scss"
-import { NavLink, Link } from "react-router-dom"
+import { NavLink, Link, useLocation } from "react-router-dom"
 import useAuth from "../../hooks/useAuth"
 
 
 
 const Nav = () => {
-  
+  const location =  useLocation();
   const { auth } = useAuth()
   let userId = auth?.userId
   let username = auth?.username
@@ -23,12 +23,10 @@ const Nav = () => {
         </div>
         <div className="right-nav">
             <ul>
-                
-                {!userId && <li className="log-btn"><Link to="/login">Login</Link></li>}
                 {userId &&  (
                   <>
-                  <li><Link to={`/user/${userId}`}>{username}</Link></li>
-                  <li className="log-btn"><Link to={`/logout`}>Logout</Link></li>
+                  <li>{username}</li>
+                  <li className="log-btn"><Link to={`/admin/logout`}>Logout</Link></li>
                   </>
                 ) }            
             </ul>

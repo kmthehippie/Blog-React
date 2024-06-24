@@ -30,6 +30,7 @@ import AdminComments from "./components/admin/Comments";
 import AdminComment from "./components/admin/Comment";
 import NewPost from "./components/admin/NewPost";
 import UpdatePost from "./components/admin/UpdatePost";
+import AdminLogout from "./components/admin/Logout"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -174,7 +175,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "logout",
-                element: <Logout />,
+                element: <AdminLogout />,
               },
             ],
           },
